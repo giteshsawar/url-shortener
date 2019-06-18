@@ -6,3 +6,44 @@ body {
   text-align: center;
   margin: auto;
 }
+
+.links-list {
+  padding: 40px 0;
+}
+.list-item {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  cursor: pointer;
+}
+.list-item:hover {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+.list-head {
+  font-size: 20px;
+  font-weight: bold;
+}
+.code {
+  width: calc(30% - 40px);
+  display: inline-block;
+  text-align: left;
+  padding: 20px;
+}
+.url {
+  width: calc(70% - 40px);
+  display: inline-block;
+  text-align: left;
+  padding: 20px;
+}
+
+.visitor-key {
+  display: inline-block;
+  width: 20%;
+  padding: 8px 0;
+}
+
+.visitor-list {
+  display: none;
+}
+.show-info {
+  display: block !important;
+}

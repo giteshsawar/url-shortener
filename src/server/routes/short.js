@@ -44,45 +44,39 @@ router.route('/')
         visitor.mobileVendor = visitorInfo.mobileVendor || '';
 
         visitor.save((err, newVisitor) => {
-            if (err) {
+            if (!err) {
                 // console.log('error: user info cannot be saved');
+                if (url.visitor) {
+                    VisitorsList.findById(url.visitor._id, (errorr, urlVisitor) => {
+                        if (!errorr) {
+                            urlVisitor.list.push(newVisitor);
+                            urlVisitor.save((error, saveVisitorList) => {
+                                if (!error) {
+                                    console.log('save url cisitor list', saveVisitorList);
+                                }
+                            });
+                        }
+                    });
+                } else {
+                    const visitorList = new VisitorsList();
+                    visitorList.list.push(visitor);
+                    visitorList.save((error, newList) => {
+                        if (!error) {
+                            // console.log('new visitor list created', newList);
+                            url.visitor = newList;
+                            // console.log('save url in db0', url);
+                            Url.findOneAndUpdate({ _id: url._id }, url, { useFindAndModify: false }, (errorr, savedObj) => {
+                                if (errorr) {
+                                    // console.log('error saving url', err);
+                                } else {
+                                    // console.log('url saved', savedObj);
+                                }
+                            });
+                        }
+                    });
+                }
             }
         });
-
-        if (url.visitor) {
-            const visitorslist = url.visitor;
-            visitorslist.list.push(visitor);
-            console.log('save url visitor', visitorslist);
-            VisitorsList.findOneAndUpdate({ _id: visitorslist._id }, visitorslist, { useFindAndModify: false }, (err, savedVisitor) => {
-                if (!err) {
-                    console.log('save url visitor', savedVisitor);
-                    Url.findOneAndUpdate({ _id: url._id }, url, { useFindAndModify: false }, (err, savedObj) => {
-                        if (err) {
-                            // console.log('error saving url', err);
-                        } else {
-                            console.log('url saved', savedObj);
-                        }
-                    });
-                }
-            });
-        } else {
-            const visitorList = new VisitorsList();
-            visitorList.list.push(visitor);
-            visitorList.save((err, newList) => {
-                if (!err) {
-                    // console.log('new visitor list created', newList);
-                    url.visitor = newList;
-                    // console.log('save url in db0', url);
-                    Url.findOneAndUpdate({ _id: url._id }, url, { useFindAndModify: false }, (err, savedObj) => {
-                        if (err) {
-                            // console.log('error saving url', err);
-                        } else {
-                            // console.log('url saved', savedObj);
-                        }
-                    });
-                }
-            });
-        }
 
     } else {
         console.log('url does not exist');
