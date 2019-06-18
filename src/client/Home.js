@@ -92,7 +92,7 @@ export default class Home extends Component {
 
                 {recentGenerated.length > 0 && <div className="new">
                   <h2>NEW URL GENERATED</h2>
-                  <a href={`https://url-shortner-54.herokuapp.com/short/${recentGenerated}`}>https://url-shortner-54.herokuapp.com//short/{recentGenerated}</a>
+                  <a href={`https://url-shortner-54.herokuapp.com/short/${recentGenerated}`}>https://url-shortner-54.herokuapp.com/short/{recentGenerated}</a>
                 </div>}
 
                 <div className="links-list">
