@@ -23,7 +23,7 @@ router.route('/')
     const { short } = req.body;
     // const ip = req.headers['x-forwarded-for'].split(',')[0];
     console.log('find short url', req.body);
-    const ipInfo = req.ipInfo;
+    const { ipInfo } = req;
     // fetchShortUrl(short, res);
     res.send({ request: ipInfo });
  });
