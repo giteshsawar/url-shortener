@@ -109,7 +109,7 @@ export default class Home extends Component {
                     <div className="item-container">
                       <div className="list-item" onClick={() => this.setActive(index)}>
                         <div className="code">
-                          {item.short}
+                          https://url-shortner-54.herokuapp.com/{item.short}
                         </div>
                         <div className="url">
                           <a href={item.url}>{item.url}</a>

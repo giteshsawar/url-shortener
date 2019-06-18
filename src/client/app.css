@@ -23,13 +23,13 @@ body {
   font-weight: bold;
 }
 .code {
-  width: calc(30% - 40px);
+  width: calc(50% - 40px);
   display: inline-block;
   text-align: left;
   padding: 20px;
 }
 .url {
-  width: calc(70% - 40px);
+  width: calc(50% - 40px);
   display: inline-block;
   text-align: left;
   padding: 20px;
