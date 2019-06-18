@@ -105,6 +105,7 @@ export default class Home extends Component {
                       </div>
                     </div>
                   {loading && <p>Loading...</p>}
+                  {urlList.length === 0 ? <p>No short URL</p> : null}
                   {urlList.length > 0 && urlList.map((item, index) => (
                     <div className="item-container">
                       <div className="list-item" onClick={() => this.setActive(index)}>
