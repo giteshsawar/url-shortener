@@ -19,7 +19,7 @@ export default class Short extends Component {
             .then(
               (result) => {
                 console.log('url shortener generated', result);
-                // window.location.replace(result.url);
+                window.location.replace(result.url);
                 // this.setState({
                 //   isLoaded: true,
                 //   items: result.items
