@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 export default class Home extends Component {
 
-  state = { url: '' };
+  state = { url: '', urlList: [] };
 
   getUrlValue = e => {
     this.setState({ url: e.target.value });
@@ -39,6 +39,28 @@ export default class Home extends Component {
           });
         }
       )
+  }
+
+  fetchAllUrls = () => {
+    fetch("/url/getAllUrls", {
+      method: 'get' 
+    })
+    .then(res => res.json())
+      .then(
+        (result) => {
+          console.log('got all urls', result);  
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          console.log('got error', error);
+        }
+      )
+  }
+
+  componentDidMount() {
+    this.fetchAllUrls();
   }
 
     render() {

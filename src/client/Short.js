@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
+import { deviceDetect } from 'react-device-detect';
 
 export default class Short extends Component {
     
     redirectToShortUrl = () => {
         console.log('url params', this.props);
         const { shortCode } = this.props.match.params;
+        const visitorInfo = deviceDetect();
         fetch("/shorti", {
             method: 'post',
             headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ short: shortCode })
+            body: JSON.stringify({ short: shortCode, visitorInfo })
           })
             .then(res => res.json())
             .then(
@@ -38,6 +40,7 @@ export default class Short extends Component {
 
     componentDidMount() {
         this.redirectToShortUrl();
+        console.log('deviceDetect', deviceDetect());
     }
     render() {
         return (

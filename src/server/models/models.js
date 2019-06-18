@@ -20,7 +20,7 @@ var UrlSchema = new mongoose.Schema({
 });
 
 var VisitorList = new mongoose.Schema({
-    visitors: [{
+    list: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'visitors'
     }]
@@ -28,6 +28,11 @@ var VisitorList = new mongoose.Schema({
 
 var Visitors = new mongoose.Schema({
     ip: String,
+    city: String,
+    country: String,
+    osName: String,
+    browserName: String,
+    mobileVendor: String,
 });
 
 mongoose.model('user', UserSchema);

@@ -57,4 +57,15 @@ router.route('/fetchShortUrl')
         fetchShortUrl(url, res);
     });
 
+router.route('/getAllUrls')
+    .get((req, res) => {
+        Url.find({}).populate({ path: 'visitor', populate: { path: 'list' } }).exec((err, urlsList) => {
+            if (err) {
+                res.send({ list: null, message: 'Not able to fetch links' });
+            } else {
+                res.send({ list: urlsList });
+            }
+        })
+    });
+
 module.exports = router;
